@@ -10,17 +10,19 @@ time. The daemon automatically starts, if necessary, during calls like
 starts the daemon; others wait and connect once it is ready. If a stale socket
 remains from a prior crash, it is removed before rebinding.
 
-Each new run of the daemon creates a new workspace directory:
+Uses directory specified by environment variable `$SILO_PREFIX` as the daemon
+root directory:
 
-- `$XDG_RUNTIME_DIR/silo/<daemon-pid>/` if available
-- `/tmp/silo/<daemon-pid>/` otherwise
+1. `$SILO_PREFIX` if already set by user
+2. `$XDG_RUNTIME_DIR/silo/` if available
+3. `/tmp/silo/` otherwise
 
-Environment variable `$SILO_WORKSPACE` contains the selected workspace
-directory.
+For every new daemon (of which only one may run at a time), a new workspace
+directory is created `$SILO_PREFIX/ws-<PID>/`.
 
-The daemon listens on a Unix domain socket in the `silo` workspace directory:
+The daemon listens on a Unix domain socket in the `silo` prefix directory:
 
-- `$SILO_WORKSPACE/silod.sock`
+- `$SILO_PREFIX/silod.sock`
 
 The socket file permissions restrict access to the owning user only.
 
@@ -62,6 +64,6 @@ goroutine" is responsible for:
   - Publish `event.ContainerStopped` after the contained process exits
   - Publish `event.SiloPurged` before unregistering subscribers
 - Silo history file
-  - Stored in $SILO_WORKSPACE
+  - Stored in the silo workspace directory
   - Each line contains one event encoded as a JSON object
   - Recorded in receipt order; line N+1 event ID > line N event ID

@@ -35,7 +35,7 @@ The contained program has started.
 This event contains additional values:
 
 - Container ID
-- Full program launch command (container entrypoint + command or arguments)
+- Full program launch command (container entrypoint + command + arguments)
 - Environment
 
 ### `event.ContainerStopped`
@@ -48,6 +48,11 @@ This event contains additional values:
 - Signal (if applicable)
 - Reason (`stop`, `purge`, or `nil` if
   the container stopped on its own)
+
+If the container stopped on its own, provider PID is `nil` and reason is `nil`.
+If the container was stopped by a call to `silo.Stop()`, provider PID is the
+caller's PID and reason is `stop`. If the container was stopped by a call to
+`silo.Purge()`, provider PID is the caller's PID and reason is `purge`.
 
 ### `event.SiloPurged`
 
