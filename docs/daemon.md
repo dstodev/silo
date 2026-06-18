@@ -60,10 +60,10 @@ goroutine" is responsible for:
     - Record to the silo history file
     - Publish to subscriber goroutines
 - Silo lifecycle
-  - Publish `event.ContainerStarted` after successful start
-  - Publish `event.ContainerStopped` after the contained process exits
+  - Publish `event.ContainerStarted` when the container starts
+  - Publish `event.ContainerStopped` when the container exits
   - Publish `event.SiloPurged` before unregistering subscribers
 - Silo history file
   - Stored in the silo workspace directory
-  - Each line contains one event encoded as a JSON object
+  - Each line represents one event encoded as a JSON object
   - Recorded in receipt order; line N+1 event ID > line N event ID

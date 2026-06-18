@@ -4,8 +4,8 @@
 <!-- markdownlint-disable MD033 -->
 
 Silo is a Golang library for running programs in ephemeral but logically
-persistent containers. A silo holds up to one container at any time: a container
-may start, stop, restart, or be replaced, but subscribers observe a single
+persistent containers. A silo holds up to one container at any time: the
+container may start, stop, restart, or be replaced, but subscribers receive a
 continuous event stream for the lifetime of the silo.
 
 All behaviors are independent of the calling process:
@@ -31,7 +31,7 @@ Processes A, B, C, and D may be the same or different.
   - [Homepage](https://go.dev)
 - Docker for image & high-level container management
   - [Docker](https://www.docker.com)
-- `containerd` — Docker's underlying container runtime; its types may be
+- `containerd` is Docker's underlying container runtime; its types may be
   referenced directly in the implementation
   - [Homepage](https://containerd.io)
   - [GitHub](https://github.com/containerd/containerd)

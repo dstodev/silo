@@ -32,7 +32,7 @@ All control events contain additional values:
 
 The contained program has started.
 
-This event contains additional values:
+This event holds additional values:
 
 - Container ID
 - Full program launch command (container entrypoint + command + arguments)
@@ -42,7 +42,7 @@ This event contains additional values:
 
 The contained program has stopped.
 
-This event contains additional values:
+This event holds additional values:
 
 - Exit code
 - Signal (if applicable)
@@ -82,7 +82,7 @@ The contained program printed a message via `stdout` or `stderr`.
 
 The contained program received a message via `stdin`.
 
-This event contains additional values:
+This event holds additional values:
 
 - Provider PID
 
